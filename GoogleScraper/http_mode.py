@@ -264,8 +264,11 @@ class HttpScrape(SearchEngineScrape, threading.Timer):
             super().detection_prevention_sleep()
             super().keyword_info()
 
-            request = self.requests.get(self.base_search_url + urlencode(self.search_params),
-                                        headers=self.headers, timeout=timeout)
+            rurl = self.base_search_url + urlencode(self.search_params)
+            #print ("sss",self.search_engine_name, self.config.get('search_engines') )
+            if  self.search_engine_name == 'google' and self.config.get('strict'):
+                rurl = rurl + '&tbs=li:1'                
+            request = self.requests.get(rurl, headers=self.headers, timeout=timeout)
 
             self.requested_at = datetime.datetime.utcnow()
             self.html = request.text
