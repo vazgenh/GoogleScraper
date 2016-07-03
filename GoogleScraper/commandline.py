@@ -108,7 +108,8 @@ NOTSET = 0
 
     parser.add_argument('-V', '--v', '--version', action='store_true', default=False, dest='version',
                         help='Prints the version of GoogleScraper')
-
+    parser.add_argument('--strict', action='store_true', default=False,
+                        help='Defines strict google / bing search')
     parser.add_argument('--clean', action='store_true', default=False,
                         help='Cleans all stored data. Please be very careful when you use this flag.')
 
